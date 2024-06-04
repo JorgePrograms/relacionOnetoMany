@@ -18,14 +18,14 @@ public class CategoriaEntity {
     private String nombre;
     @OneToMany(mappedBy = "categoriaEntity",cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<ProductoEntity> productos=new ArrayList<>();
+    private List<ProductoEntity> productosEntities=new ArrayList<>();
 
     public CategoriaEntity() {
     }
 
-    public CategoriaEntity(Long id, String nombre, List<ProductoEntity> productos) {
+    public CategoriaEntity(Long id, String nombre, List<ProductoEntity> productosEntities) {
         this.id = id;
         this.nombre = nombre;
-        this.productos = productos;
+        this.productosEntities = productosEntities;
     }
 }
