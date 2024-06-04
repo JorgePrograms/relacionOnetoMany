@@ -11,6 +11,10 @@ public class Categoria {
     private Long id;
     private String nombre;
     private List<Producto> productos;
+
+    public Categoria() {
+    }
+
     public Categoria(Long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
