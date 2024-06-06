@@ -21,8 +21,15 @@ public class ProductoJpaRepositoryAdapter implements ProductoRepositoryPort {
     @Override
     public Producto save(Producto producto) {
         ProductoEntity productoEntity=productoMapper.toProductoEntity(producto);
-        ProductoEntity saveProductoEntity=productoJpaRepository.save(productoEntity);
-        return productoMapper.toProducto(saveProductoEntity);
+        Long productId = producto.getId();
+
+        if (productoJpaRepository.existsById(productId)) {
+            throw new RuntimeException("Ya existe un producto con ID: " + productId);
+        }
+        else{
+            ProductoEntity saveProductoEntity = productoJpaRepository.save(productoEntity);
+            return productoMapper.toProducto(saveProductoEntity);
+        }
     }
 
     @Override

@@ -16,8 +16,12 @@ public class ProductoController {
     }
     @PostMapping
     public ResponseEntity<Producto> createProducto(@RequestBody Producto producto){
-        Producto createProducto=productoService.crearProducto(producto);
-        return new ResponseEntity<>(createProducto, HttpStatus.CREATED);
+        try {
+            Producto createProducto =productoService.crearProducto(producto);
+            return new ResponseEntity<>(createProducto, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
 
     }
     @GetMapping("/{productoId}")
